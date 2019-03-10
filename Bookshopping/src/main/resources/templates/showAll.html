@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Przeglądaj zbiór</title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>Tytul</th>
+			<th>Imié autora</th>
+			<th>Nazwisko autora</th>
+			<th>Kraj</th>
+			<th>Liczba stron</th>
+			<th>cena</th>
+		</tr>
+		<th:block th:each="book:${books}">
+
+			<tr>
+				<td th:text="${book.title}">cokolwiek</td>
+				<td th:text="${book.author.name}">cokolwiek</td>
+				<td th:text="${book.author.surname}">cokolwiek</td>
+				<td th:text="${book.author.country}">cokolwiek</td>
+				<td th:text="${book.pages}">cokolwiek</td>
+				<td th:text="${book.price}">cokolwiek</td>
+			</tr>
+
+		</th:block>
+	</table>
+
+</body>
+</html>

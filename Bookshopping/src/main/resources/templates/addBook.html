@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Dodaj książkę</title>
+</head>
+<body>
+
+<form action="/addBook" method="post">
+<p>Tytuł: <input type="text" name="title"></p>
+<p>Imię autora <input type="text" name="name"></p>
+<p>Nazwisko Autora <input type="text" name="surname"></p>
+<p>Liczba stron <input type="number" name="pages"></p>
+<p>Cena : <input type="number" name="price"></p>
+<p>Kraj autora : <input type="text" name="country"></p>
+<p>Wyslij : <input type="submit"></p>
+</form>
+
+
+</body>
+</html>
