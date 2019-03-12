@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/header :: header">
 <meta charset="UTF-8">
+
 <title>Wynik wyszukiwania po danych autora</title>
 </head>
 <body>
-<table>
-<tr><th>Imię</th>
-<th>Nazwisko</th>
-<th>Kraj</th>
-</tr>
-<th:block th:each="author:${authorsFound}">
-<tr><td th:text="${author.name}"></td>
-<td th:text="${author.surname}">11</td>
-<td th:text="${author.country}"></td>
-</tr>
-</th:block>
-</table>
+	<table border="1">
+		<tr>
+			<th>Imię</th>
+			<th>Nazwisko</th>
+			<th>Kraj</th>
+			<th>Książki</th>
+		</tr>
+		<th:block th:each="author:${authors}">
+			<tr>
+				<td th:text="${author.name}"></td>
+				<td th:text="${author.surname}"></td>
+				<td th:text="${author.country}"></td>
+				<th:block th:each="book:${author.books}">
+					<td th:text="${book.title}"></td>
+			</tr>
+		</th:block>
+		</th:block>
+	</table>
 </body>
 </html>

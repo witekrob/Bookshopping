@@ -13,4 +13,5 @@ public interface AuthorDao extends CrudRepository<Author, Long> {
 
 List<Author> findByNameAndSurname(String name, String surname);
 List<Author> findByCountry(String country);
+List<Author> findByNameAndSurnameAndYearOfBorn(String name, String surname,int yearOfBorn);
 }

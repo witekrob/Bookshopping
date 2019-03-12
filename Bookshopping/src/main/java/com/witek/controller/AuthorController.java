@@ -21,25 +21,25 @@ private AuthorDao authorDao;
 public AuthorController(AuthorDao dao) {
 	this.authorDao=dao;
 }
-@GetMapping("/ByAuthor")
+@GetMapping("/searchBy")
 public String findByA() {
-	return "searchByAuthor";
+	return "searchBy";
 }
-@PostMapping("/findByAuthor")
-public String findByAuthor(Model model,@RequestParam String findingMethod, @RequestParam String country,@RequestParam String name,@RequestParam String surname ){
+@PostMapping("/searchBy")
+public String findBy(Model model,@RequestParam String findingMethod, @RequestParam String country,@RequestParam String name,@RequestParam String surname ){
 	System.out.println("szukam po : " +  findingMethod);
-	List<Author> authorsFound = new ArrayList<Author>();
+	List<Author> authors = new ArrayList<Author>();
 	switch (findingMethod) {
 	case "nameAndSurname": 
-		authorsFound = authorDao.findByNameAndSurname(name, surname);
-		authorsFound.forEach(System.out::println);
+		authors = authorDao.findByNameAndSurname(name, surname);
+		authors.forEach(System.out::println);
 		break;
 	case "country" :
-		authorsFound = authorDao.findByCountry(country);
-		authorsFound.forEach(System.out::println);
+		authors = authorDao.findByCountry(country);
+		authors.forEach(System.out::println);
 		break;
 	}
-	model.addAttribute("authorsFound",authorsFound);
+	model.addAttribute("authors",authors);
 	return "ByAuthor";
 }
 	

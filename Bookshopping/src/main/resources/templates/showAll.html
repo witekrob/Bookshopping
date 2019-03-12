@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="Fragment/header :: header">
 <meta charset="UTF-8">
-<title>Przeglądaj zbiór</title>
 </head>
+
 <body>
 	<table border="1">
 		<tr>
-			<th>Tytul</th>
-			<th>Imié autora</th>
-			<th>Nazwisko autora</th>
-			<th>Kraj</th>
-			<th>Liczba stron</th>
-			<th>cena</th>
+			<th><a th:href="@{/sortBy?criterium=title}">Tytuł</a></th>
+			<th><a th:href="@{/sortBy?criterium=name}">Imię autora</a></th>
+			<th><a th:href="@{/sortBy?criterium=surname}">Nazwisko
+					autora</a></th>
+			<th><a th:href="@{/sortBy?criterium=country}">Kraj
+					pochodzenia</a></th>
+			<th><a th:href="@{/sortBy?criterium=pages}">Liczba stron</a></th>
+			<th><a th:href="@{/sortBy?criterium=price}">Cena</a></th>
 		</tr>
 		<th:block th:each="book:${books}">
 
@@ -28,5 +30,11 @@
 		</th:block>
 	</table>
 
+	<br>
+	<h3>filtru na podstawie :</h3>
+	<br>
+	<form action="/searchBy">
+		<input type="Submit">
+	</form>
 </body>
 </html>

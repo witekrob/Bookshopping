@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Author {
+public class Author implements Comparable {
 
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -19,58 +19,23 @@ private long id;
 private String name;
 private String surname;
 private String country;
+private int yearOfBorn;
 @OneToMany(cascade=CascadeType.PERSIST,mappedBy="author")
-private List<Book> booksy=new ArrayList<Book>();
+private List<Book> books=new ArrayList<Book>();
 
 public Author() {}
-public  Author(String name, String surname,String country) {
+public  Author(String name, String surname,String country, int yearOfBorn) {
 	this.country=country;
 	this.name=name;
 	this.surname=surname;
+	this.yearOfBorn=yearOfBorn;
 }
 
 
 @Override
 public String toString() {
-	return "Author [id=" + id + ", name=" + name + ", surname=" + surname + ", country=" + country + "]";
-}
-@Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((country == null) ? 0 : country.hashCode());
-	result = prime * result + (int) (id ^ (id >>> 32));
-	result = prime * result + ((name == null) ? 0 : name.hashCode());
-	result = prime * result + ((surname == null) ? 0 : surname.hashCode());
-	return result;
-}
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Author other = (Author) obj;
-	if (country == null) {
-		if (other.country != null)
-			return false;
-	} else if (!country.equals(other.country))
-		return false;
-	if (id != other.id)
-		return false;
-	if (name == null) {
-		if (other.name != null)
-			return false;
-	} else if (!name.equals(other.name))
-		return false;
-	if (surname == null) {
-		if (other.surname != null)
-			return false;
-	} else if (!surname.equals(other.surname))
-		return false;
-	return true;
+	return "Author [id=" + id + ", name=" + name + ", surname=" + surname + ", country=" + country + ", yearOfBorn="
+			+ yearOfBorn +  "]";
 }
 public long getId() {
 	return id;
@@ -96,10 +61,68 @@ public String getCountry() {
 public void setCountry(String country) {
 	this.country = country;
 }
-public List<Book> getBooksy() {
-	return booksy;
+public List<Book> getBooks() {
+	return books;
 }
-public void setBooksy(List<Book> booksy) {
-	this.booksy = booksy;
+public void setBooks(List<Book> books) {
+	this.books = books;
+}
+@Override
+public int compareTo(Object o) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((books == null) ? 0 : books.hashCode());
+	result = prime * result + ((country == null) ? 0 : country.hashCode());
+	result = prime * result + (int) (id ^ (id >>> 32));
+	result = prime * result + ((name == null) ? 0 : name.hashCode());
+	result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+	result = prime * result + yearOfBorn;
+	return result;
+}
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Author other = (Author) obj;
+	if (books == null) {
+		if (other.books != null)
+			return false;
+	} else if (!books.equals(other.books))
+		return false;
+	if (country == null) {
+		if (other.country != null)
+			return false;
+	} else if (!country.equals(other.country))
+		return false;
+	if (id != other.id)
+		return false;
+	if (name == null) {
+		if (other.name != null)
+			return false;
+	} else if (!name.equals(other.name))
+		return false;
+	if (surname == null) {
+		if (other.surname != null)
+			return false;
+	} else if (!surname.equals(other.surname))
+		return false;
+	if (yearOfBorn != other.yearOfBorn)
+		return false;
+	return true;
+}
+public int getYearOfBorn() {
+	return yearOfBorn;
+}
+public void setYearOfBorn(int yearOfBorn) {
+	this.yearOfBorn = yearOfBorn;
 }
 }

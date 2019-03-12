@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Fragment/header :: header">
+<meta charset="UTF-8">
+
+<title>Szukaj według autora</title>
+</head>
+<body>
+
+
+	Szukaj po :
+	<form name = "searchForm" action="/searchBy" method="post">
+		<p>
+		<input type ="radio" required="required" name="findingMethod" hidden="true">
+			imię i nazwisko: <input type="radio" name="findingMethod" value="nameAndSurname" > 
+			kraj pochodzenia : <input type="radio" name="findingMethod" value="country">
+		<p>
+			Podaj Imię: <input type="text" name="name" >
+		<p>
+			Podaj nazwisko : <input type="text" name="surname">
+		<p>
+			Wpisz kraj pochodzenia : <input type="text" name="country" >
+		<p>
+			<input type="submit" onclick="check()">
+	</form>
+
+<script>
+        function check() {
+        	if (searchForm.findingMethod.value=='nameAndSurname'){
+        		searchForm.name.required='required';
+        		searchForm.surname.required='required';
+        	} 
+        	if (searchForm.findingMethod.value=='country') {
+        		searchForm.country.required='required';
+        	}	
+            else {
+                searchForm.submit();
+            }
+        }
+    </script>
+
+
+</body>
+</html>
